@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="tictactoeApp">
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script type="text/javascript" src="js/firebase.js"></script>
+	<script type="text/javascript" src="js/angularfire.js"></script>
+	<script src="js/app.js" defer></script>
+	<script src="js/tttController.js" defer></script>
+	<title>Tic Tac Toe!</title>
+</head>
+<body ng-controller="tttController as tttCtrl">
+
+<h1 class="maintitle">Tic Tac Toe</h1>
+
+
+<!-- <h2 class="score">Score: <span id="score_count">0</span></h2>
+ -->	<div class="board"> 
+ 		<div class="hole" 
+ 	     	ng-repeat="hole in tttCtrl.holes track by $index"  		
+ 	      	ng-click="tttCtrl.gamePlay($index)"> 
+ 	      		{{hole.display}}
+ 	      		{{tttCtrl.alert}}
+		</div>
+		</div>
+
+<button id="resetButton"
+		ng-click="tttCtrl.resetter()"
+			>Reset</button>
+
+</body>
+</html>
