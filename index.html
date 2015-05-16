@@ -11,22 +11,31 @@
 </head>
 <body ng-controller="tttController as tttCtrl">
 
-<h1 class="maintitle">Tic Tac Toe</h1>
+	<h1 class="maintitle">Tic Tac Toe</h1>
 
 
-<!-- <h2 class="score">Score: <span id="score_count">0</span></h2>
- -->	<div class="board"> 
- 		<div class="hole" 
- 	     	ng-repeat="hole in tttCtrl.holes track by $index"  		
- 	      	ng-click="tttCtrl.gamePlay($index)"> 
- 	      		{{hole.display}}
- 	      		{{tttCtrl.alert}}
+	<!-- <h2 class="score">Score: <span id="score_count">0</span></h2>
+-->	<div class="board"> 
+		<div class="hole" 
+	     	ng-repeat="hole in tttCtrl.holes track by $index"  		
+	      	ng-click="tttCtrl.gamePlay($index)"> 
+	      		{{hole.display}}
+	      		{{tttCtrl.alert}}
 		</div>
-		</div>
+	</div>
 
-<button id="resetButton"
+
+
+	<div id="displayResult">
+				{{tttCtrl.message}}
+	</div>
+
+	<button 
+		id="resetButton"
 		ng-click="tttCtrl.resetter()"
-			>Reset</button>
+	>
+		Reset
+	</button>
 
 </body>
 </html>

@@ -2,6 +2,8 @@ angular
 	.module('tictactoeApp')
 	.controller('tttController', tttController);
 
+	// tttController.$inject = ['$firebaseObject'];
+
 
 function tttController(){
 		var self = this;
@@ -52,6 +54,18 @@ function tttController(){
 	 self.declareWinner = declareWinner;
 	 self.gamePlay = gamePlay;
 	 self.resetter = resetter;
+	 self.message = self.declareWinner;
+
+
+
+	 // self.fire = getFire();
+
+	 // function getFire() {
+	 // 	var ref = new Firebase("https://tictactoe-angular-ap.firebaseIO.com");
+	 // 	var fire = $firebaseObject(ref);
+	 // 	return fire;
+	 // }
+
 
     function gamePlay($index) {
     	console.log("hello world");
@@ -86,7 +100,8 @@ function tttController(){
 	   ((self.holes[2].display=="X") && (self.holes[4].display=="X") && (self.holes[6].display=="X")) 
 	) {
 		self.gameOver=true;
-		alert("X is the Winner");
+		self.message="X is the Winner"
+		// alert("X is the Winner");
 }
 // if o is the winner, one of 8 conditoins must be met , which identify 3 adjacent cells in a row/column/diagonal are of y's suite
 	else if(
@@ -100,8 +115,9 @@ function tttController(){
 	   ((self.holes[2].display=="O") && (self.holes[4].display=="O") && (self.holes[6].display=="O")) 
 	) {
 		self.gameOver=true;
-		alert("O is the Winner");
-		}
+		self.message="Y is the Winner"
+		
+	}
 }
 
 
@@ -151,6 +167,7 @@ function resetter() {
 				 self.firstplayerON = true;
 				 self.secondplayerON = false;
 				 self.gameOver=false;
+				 self.message="";
 }
 }
 
