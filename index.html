@@ -11,23 +11,16 @@
 </head>
 <body ng-controller="tttController as tttCtrl">
 
-	<h1 class="maintitle">Tic Tac Toe</h1>
-
-
-	<!-- <h2 class="score">Score: <span id="score_count">0</span></h2>
--->	<div class="board"> 
+	<h1 class="maintitle">Black Empowerment Tic Tac Toe</h1>
+	<h2 class="subtitle">with Malcolm <span style="color:red">X</span> and Barack <span style="color:blue" "font-size:60pt">O</span>bama</h2>
+	
+	<div class="board"> 
 		<div class="hole" 
-	     	ng-repeat="hole in tttCtrl.holes track by $index"  		
+	     	ng-repeat="hole in tttCtrl.holes track by $index"  
+	     	ng-class="hole.display"		
 	      	ng-click="tttCtrl.gamePlay($index)"> 
-	      		{{hole.display}}
 	      		{{tttCtrl.alert}}
 		</div>
-	</div>
-
-
-
-	<div id="displayResult">
-				{{tttCtrl.message}}
 	</div>
 
 	<button 
@@ -36,6 +29,10 @@
 	>
 		Reset
 	</button>
+
+	<div id="displayResult">
+				{{tttCtrl.message}}
+	</div>
 
 </body>
 </html>

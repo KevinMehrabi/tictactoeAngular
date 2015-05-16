@@ -1,8 +1,30 @@
 
+body {
+	background-image: url("images/background.jpg");
+}
+
+.X {
+	background-image: url("images/mx.jpg");
+
+}
+
+.O {
+	background-image: url("images/bo.jpg");
+
+}
 
 .maintitle {
 	text-align: center;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 80px;
+	margin-top: -15px;
+}
 
+.subtitle {
+	margin-top: -60px;
+	text-align: center;
+	font-family: Impact, Charcoal, sans-serif;
+	font-size: 50px;
 }
 
 .score {
@@ -10,14 +32,15 @@
 }
 
 .board {
-	width: 600px;
-	height: 600px;
+	width: 450px;
+	height: 450px;
 	margin: 0 auto;
+	margin-top: -15px;
 }
 
 .hole {
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	border:3px solid black;
 	float: left;
 	box-sizing: border-box;
@@ -27,5 +50,16 @@
 #resetButton {
 	width:50px;
 	height:25px;
-	margin-left: 300px;
+	margin-left: 490px;
+}
+
+#displayResult {
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+    text-shadow: 1px 1px #000000;
+
+	font-size: 60px;
+	color: #E6E600;
+;
+;
 }

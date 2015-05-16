@@ -2,10 +2,10 @@ angular
 	.module('tictactoeApp')
 	.controller('tttController', tttController);
 
-	// tttController.$inject = ['$firebaseObject'];
+	tttController.$inject = ['$firebaseObject'];
 
 
-function tttController(){
+function tttController($firebaseObject){
 		var self = this;
 		self.gameOver =false;
 
@@ -55,35 +55,48 @@ function tttController(){
 	 self.gamePlay = gamePlay;
 	 self.resetter = resetter;
 	 self.message = self.declareWinner;
+	 self.counter = 0;
+	 self.fire = getFire();
 
 
+	 function getFire() {
+	 	var ref = new Firebase("https://tictactoe-angular-ap.firebaseIO.com");
+	 	var fire = $firebaseObject(ref);
+	 	return fire;
+	 }
 
-	 // self.fire = getFire();
 
-	 // function getFire() {
-	 // 	var ref = new Firebase("https://tictactoe-angular-ap.firebaseIO.com");
-	 // 	var fire = $firebaseObject(ref);
-	 // 	return fire;
-	 // }
+	 function holesFB() {
+		self.fire.$save(self.holes);
+
+
+	 }
+
+
 
 
     function gamePlay($index) {
     	console.log("hello world");
 
-	if(self.firstplayerON == true && self.holes[$index].display=="" && self.gameOver==false) {
-		self.holes[$index].display= "X";
-		console.log(self.holes[$index]);
-		self.holes[$index].holy=true;
-		self.firstplayerON=false
-		self.declareWinner();
+		if(self.firstplayerON == true && self.holes[$index].display=="" && self.gameOver==false) {
+			self.holes[$index].display="X";
+			console.log(self.holes[$index]);
+			self.holes[$index].holy=true;
+			self.firstplayerON=false
+			self.declareWinner();
 		}
 		else if (self.holes[$index].display=="" && self.gameOver==false){
-		self.holes[$index].display= "O";
-		console.log(self.holes[$index]);
-		self.holes[$index].holy=true;
-		self.firstplayerON=true
-		self.declareWinner();
+			self.holes[$index].display= "O";
+			console.log(self.holes[$index]);
+			self.holes[$index].holy=true;
+			self.firstplayerON=true
+			self.declareWinner();
 		}
+		else {
+			return null;
+		}
+			self.counter ++;
+			console.log(self.counter);
 	}
 
 
@@ -100,7 +113,7 @@ function tttController(){
 	   ((self.holes[2].display=="X") && (self.holes[4].display=="X") && (self.holes[6].display=="X")) 
 	) {
 		self.gameOver=true;
-		self.message="X is the Winner"
+		self.message="Malcolm X wins! By ANY MEANS NECESSARY!"
 		// alert("X is the Winner");
 }
 // if o is the winner, one of 8 conditoins must be met , which identify 3 adjacent cells in a row/column/diagonal are of y's suite
@@ -115,8 +128,12 @@ function tttController(){
 	   ((self.holes[2].display=="O") && (self.holes[4].display=="O") && (self.holes[6].display=="O")) 
 	) {
 		self.gameOver=true;
-		self.message="Y is the Winner"
+		self.message="YES WE CAN! Obama wins!"
 		
+	}
+
+	else if (self.counter == 8) {
+		self.message="It's a TIE! MLK wins by default";
 	}
 }
 
