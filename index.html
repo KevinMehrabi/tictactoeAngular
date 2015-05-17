@@ -16,7 +16,7 @@
 	
 	<div class="board"> 
 		<div class="hole" 
-	     	ng-repeat="hole in tttCtrl.holes track by $index"  
+	     	ng-repeat="hole in tttCtrl.fire.board track by $index"  
 	     	ng-class="hole.display"		
 	      	ng-click="tttCtrl.gamePlay($index)"> 
 	      		{{tttCtrl.alert}}

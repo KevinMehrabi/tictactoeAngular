@@ -57,7 +57,7 @@ function tttController($firebaseObject){
 	 self.message = self.declareWinner;
 	 self.counter = 0;
 	 self.fire = getFire();
-
+	 self.holesFB = holesFB();
 
 	 function getFire() {
 	 	var ref = new Firebase("https://tictactoe-angular-ap.firebaseIO.com");
@@ -67,7 +67,48 @@ function tttController($firebaseObject){
 
 
 	 function holesFB() {
-		self.fire.$save(self.holes);
+		self.fire.board=
+		[  
+		{holy: false,
+		 ID: 1,
+		 display: ""
+		},
+        {holy: false,
+        ID: 2,
+		 display: ""
+		},
+        {holy: false,
+        ID: 3,
+		 display: ""
+		},
+        {holy: false,
+        ID: 4,
+		 display: ""
+		},
+        {holy: false,
+        ID: 5,
+		 display: ""
+		},
+        {holy: false,
+        ID: 6,
+		 display: ""
+		},
+        {holy: false,
+        ID: 7,
+		 display: ""
+		},
+        {holy: false,
+        ID: 8,
+		 display: ""
+		},
+        {holy: false,
+        ID: 9,
+		 display: ""
+		}
+
+        ];
+
+		self.fire.$save();
 
 
 	 }
@@ -78,17 +119,17 @@ function tttController($firebaseObject){
     function gamePlay($index) {
     	console.log("hello world");
 
-		if(self.firstplayerON == true && self.holes[$index].display=="" && self.gameOver==false) {
-			self.holes[$index].display="X";
-			console.log(self.holes[$index]);
-			self.holes[$index].holy=true;
+		if(self.firstplayerON == true && self.fire.board[$index].display=="" && self.gameOver==false) {
+			self.fire.board[$index].display="X";
+			console.log(self.fire.board[$index]);
+			self.fire.board[$index].holy=true;
 			self.firstplayerON=false
 			self.declareWinner();
 		}
-		else if (self.holes[$index].display=="" && self.gameOver==false){
-			self.holes[$index].display= "O";
-			console.log(self.holes[$index]);
-			self.holes[$index].holy=true;
+		else if (self.fire.board[$index].display=="" && self.gameOver==false){
+			self.fire.board[$index].display= "O";
+			console.log(self.fire.board[$index]);
+			self.fire.board[$index].holy=true;
 			self.firstplayerON=true
 			self.declareWinner();
 		}
@@ -103,14 +144,14 @@ function tttController($firebaseObject){
 
 	function declareWinner() {
 	if(
-	   ((self.holes[0].display=="X") && (self.holes[1].display=="X") && (self.holes[2].display=="X")) ||
-	   ((self.holes[3].display=="X") && (self.holes[4].display=="X") && (self.holes[5].display=="X")) ||
-	   ((self.holes[6].display=="X") && (self.holes[7].display=="X") && (self.holes[8].display=="X")) ||
-	   ((self.holes[0].display=="X") && (self.holes[3].display=="X") && (self.holes[6].display=="X")) ||
-	   ((self.holes[1].display=="X") && (self.holes[4].display=="X") && (self.holes[7].display=="X")) ||
-	   ((self.holes[2].display=="X") && (self.holes[5].display=="X") && (self.holes[8].display=="X")) ||
-	   ((self.holes[0].display=="X") && (self.holes[4].display=="X") && (self.holes[8].display=="X")) ||
-	   ((self.holes[2].display=="X") && (self.holes[4].display=="X") && (self.holes[6].display=="X")) 
+	   ((self.fire.board[0].display=="X") && (self.fire.board[1].display=="X") && (self.fire.board[2].display=="X")) ||
+	   ((self.fire.board[3].display=="X") && (self.fire.board[4].display=="X") && (self.fire.board[5].display=="X")) ||
+	   ((self.fire.board[6].display=="X") && (self.fire.board[7].display=="X") && (self.fire.board[8].display=="X")) ||
+	   ((self.fire.board[0].display=="X") && (self.fire.board[3].display=="X") && (self.fire.board[6].display=="X")) ||
+	   ((self.fire.board[1].display=="X") && (self.fire.board[4].display=="X") && (self.fire.board[7].display=="X")) ||
+	   ((self.fire.board[2].display=="X") && (self.fire.board[5].display=="X") && (self.fire.board[8].display=="X")) ||
+	   ((self.fire.board[0].display=="X") && (self.fire.board[4].display=="X") && (self.fire.board[8].display=="X")) ||
+	   ((self.fire.board[2].display=="X") && (self.fire.board[4].display=="X") && (self.fire.board[6].display=="X")) 
 	) {
 		self.gameOver=true;
 		self.message="Malcolm X wins! By ANY MEANS NECESSARY!"
@@ -118,14 +159,14 @@ function tttController($firebaseObject){
 }
 // if o is the winner, one of 8 conditoins must be met , which identify 3 adjacent cells in a row/column/diagonal are of y's suite
 	else if(
-	   ((self.holes[0].display=="O") && (self.holes[1].display=="O") && (self.holes[2].display=="O")) ||
-	   ((self.holes[3].display=="O") && (self.holes[4].display=="O") && (self.holes[5].display=="O")) ||
-	   ((self.holes[6].display=="O") && (self.holes[7].display=="O") && (self.holes[8].display=="O")) ||
-	   ((self.holes[0].display=="O") && (self.holes[3].display=="O") && (self.holes[6].display=="O")) ||
-	   ((self.holes[1].display=="O") && (self.holes[4].display=="O") && (self.holes[7].display=="O")) ||
-	   ((self.holes[2].display=="O") && (self.holes[5].display=="O") && (self.holes[8].display=="O")) ||
-	   ((self.holes[0].display=="O") && (self.holes[4].display=="O") && (self.holes[8].display=="O")) ||
-	   ((self.holes[2].display=="O") && (self.holes[4].display=="O") && (self.holes[6].display=="O")) 
+	   ((self.fire.board[0].display=="O") && (self.fire.board[1].display=="O") && (self.fire.board[2].display=="O")) ||
+	   ((self.fire.board[3].display=="O") && (self.fire.board[4].display=="O") && (self.fire.board[5].display=="O")) ||
+	   ((self.fire.board[6].display=="O") && (self.fire.board[7].display=="O") && (self.fire.board[8].display=="O")) ||
+	   ((self.fire.board[0].display=="O") && (self.fire.board[3].display=="O") && (self.fire.board[6].display=="O")) ||
+	   ((self.fire.board[1].display=="O") && (self.fire.board[4].display=="O") && (self.fire.board[7].display=="O")) ||
+	   ((self.fire.board[2].display=="O") && (self.fire.board[5].display=="O") && (self.fire.board[8].display=="O")) ||
+	   ((self.fire.board[0].display=="O") && (self.fire.board[4].display=="O") && (self.fire.board[8].display=="O")) ||
+	   ((self.fire.board[2].display=="O") && (self.fire.board[4].display=="O") && (self.fire.board[6].display=="O")) 
 	) {
 		self.gameOver=true;
 		self.message="YES WE CAN! Obama wins!"
@@ -134,6 +175,7 @@ function tttController($firebaseObject){
 
 	else if (self.counter == 8) {
 		self.message="It's a TIE! MLK wins by default";
+		self.counter=0;
 	}
 }
 
@@ -141,7 +183,7 @@ function tttController($firebaseObject){
 
 function resetter() {
 
-					self.holes= [  
+					self.fire.board= [  
 					{holy: false,
 					 ID: 1,
 					 display: ""
