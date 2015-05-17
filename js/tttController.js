@@ -227,6 +227,7 @@ function resetter() {
 				 self.secondplayerON = false;
 				 self.gameOver=false;
 				 self.message="";
+				 self.counter=0;
 }
 }
 
